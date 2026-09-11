@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PromptVault</title><link rel="stylesheet" href="popup.css"><script type="module" src="popup.js"></script></head>
+<body>
+  <header class="topbar"><a class="brand" href="popup.html" aria-label="PromptVault home"><span class="logo" aria-hidden="true">P<span>·</span></span><span>PromptVault<span class="brand-sub">A HOME FOR YOUR BEST IDEAS</span></span></a><span class="local"><i></i> Local only</span></header>
+  <main>
+    <section id="library-view">
+      <div class="heading"><div><p class="eyebrow">LESS REPETITION. MORE CREATION.</p><h1>Your prompt library<span class="dot">.</span></h1></div><button id="new-prompt" class="primary" title="Create a new prompt">+ New</button></div>
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a prompt, idea, or keyword…" aria-label="Search prompts"><kbd>/</kbd></label>
+      <div class="filters"><div class="tabs" role="group" aria-label="Library filter"><button id="all-tab" class="tab active" aria-pressed="true">All prompts <span id="all-count">0</span></button><button id="favorites-tab" class="tab" aria-pressed="false">★ Favorites</button></div><select id="category-filter" aria-label="Filter by category"><option>All</option></select></div>
+      <div class="list-label"><span id="result-count">Loading your vault…</span><span>READY WHEN YOU ARE</span></div>
+      <div id="prompt-list" class="prompt-list" aria-label="Saved prompts"></div>
+      <div id="empty" class="empty" hidden><span aria-hidden="true">◇</span><h2 id="empty-title">A little space for a big idea.</h2><p id="empty-description">Save your first prompt and make it a shortcut.</p><button id="empty-action" class="secondary">Create a prompt</button></div>
+      <aside class="tip"><span class="tip-icon" aria-hidden="true">↗</span><p><strong>Your next good answer is one click away.</strong><br>Click a text field on a webpage, open this popup, then Insert. Or right-click the field → PromptVault.</p></aside>
+    </section>
+    <section id="editor-view" hidden>
+      <button id="back" class="text-button">← Back to library</button><div class="editor-heading"><p class="eyebrow">MAKE THE GOOD ONES REUSABLE</p><h1 id="editor-title">New prompt<span class="dot">.</span></h1></div>
+      <form id="prompt-form"><label for="prompt-title">Title <span>Keep it recognizable</span></label><input id="prompt-title" required maxlength="80" placeholder="e.g. My go-to code reviewer">
+        <label for="prompt-category">Collection</label><select id="prompt-category"></select>
+        <label for="prompt-body">Prompt <span id="character-count">0 / 20,000</span></label><textarea id="prompt-body" required maxlength="20000" placeholder="Write the instructions you want to use again…" spellcheck="false"></textarea>
+        <label class="check"><input id="prompt-favorite" type="checkbox"> Add to favorites</label>
+        <div class="form-actions"><button id="cancel" type="button" class="secondary">Cancel</button><button id="save" type="submit" class="primary">Save prompt <span aria-hidden="true">↗</span></button></div>
+      </form>
+    </section>
+  </main>
+  <footer><span class="footer-note"><span aria-hidden="true">◇</span> Yours. On this device.</span><div><button id="import" class="text-button">Import</button><span class="divider">/</span><button id="export" class="text-button">Export</button><button id="help" class="help-button" aria-label="Open getting started guide">?</button></div></footer>
+  <input id="import-file" type="file" accept="application/json,.json" hidden>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="delete-dialog"><form method="dialog"><p class="eyebrow">A LITTLE HOUSEKEEPING</p><h2>Delete this prompt?</h2><p id="delete-name"></p><p>Export a backup first if you want to keep a copy.</p><div class="form-actions"><button value="cancel" class="secondary">Keep prompt</button><button value="delete" class="danger">Delete prompt</button></div></form></dialog>
+  <template id="card-template"><article class="card"><div class="card-top"><span class="category"></span><button class="favorite icon-button" aria-label="Add to favorites">☆</button></div><h2></h2><p class="preview"></p><div class="card-bottom"><span class="length"></span><div class="card-actions"><button class="edit icon-button" aria-label="Edit prompt" title="Edit prompt">✎</button><button class="delete icon-button" aria-label="Delete prompt" title="Delete prompt">×</button><span class="action-divider"></span><button class="copy small-button">Copy</button><button class="insert insert-button">Insert <span aria-hidden="true">↗</span></button></div></div></article></template>
+</body></html>
